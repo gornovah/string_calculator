@@ -1,6 +1,6 @@
 public class StringCalculator {
 
     public int add(String numbers) {
-        return 0;
+        return numbers.equals("") ? 0: Integer.valueOf(numbers);
     }
 }
