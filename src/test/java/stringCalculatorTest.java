@@ -1,4 +1,13 @@
-package PACKAGE_NAME;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Test;
+
 
 public class stringCalculatorTest {
+    @Test
+    public void simple_calculator() {
+        StringCalculator stringCalculator = new StringCalculator();
+        int result = stringCalculator.add("");
+        MatcherAssert.assertThat(result, Matchers.is(0));
+    }
 }
