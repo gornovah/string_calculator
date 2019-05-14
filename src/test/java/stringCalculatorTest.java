@@ -14,7 +14,7 @@ public class stringCalculatorTest {
     @Test
     public void simple_calculator_various_parameters() {
         StringCalculator stringCalculator = new StringCalculator();
-        int resultAdd = stringCalculator.add("4");
-        MatcherAssert.assertThat(resultAdd, Matchers.is(4));
+        int resultAdd = stringCalculator.add("4,2");
+        MatcherAssert.assertThat(resultAdd, Matchers.is(6));
     }
 }
