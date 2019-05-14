@@ -8,7 +8,7 @@ public class StringCalculator {
     }
 
     private int sumNumbers(String numbers) {
-        String[] numbersArray = numbers.split(",");
+        String[] numbersArray = numbers.split(",|\n");
         int result = 0;
         for (String number: numbersArray){
             result += Integer.valueOf(number);

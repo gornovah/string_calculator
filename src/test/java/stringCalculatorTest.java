@@ -24,4 +24,11 @@ public class stringCalculatorTest {
         int resultAdd = stringCalculator.add("1,2,3,4,5,6,7,8,9");
         MatcherAssert.assertThat(resultAdd, Matchers.is(45));
     }
+    
+    @Test
+    public void given_new_line_separator_then_return_the_sum() {
+        StringCalculator stringCalculator = new StringCalculator();
+        int resultAdd = stringCalculator.add("1\n2,3");
+        MatcherAssert.assertThat(resultAdd, Matchers.is(6));
+    }
 }
