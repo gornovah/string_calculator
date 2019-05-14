@@ -17,4 +17,11 @@ public class stringCalculatorTest {
         int resultAdd = stringCalculator.add("4,2");
         MatcherAssert.assertThat(resultAdd, Matchers.is(6));
     }
+    
+    @Test
+    public void given_arbitrary_number_size_then_return_the_sum() {
+        StringCalculator stringCalculator = new StringCalculator();
+        int resultAdd = stringCalculator.add("1,2,3,4,5,6,7,8,9");
+        MatcherAssert.assertThat(resultAdd, Matchers.is(45));
+    }
 }
