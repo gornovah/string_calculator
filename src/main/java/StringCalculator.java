@@ -19,6 +19,7 @@ public class StringCalculator {
             return 0;
         }
         if (numbers.contains("-")){
+
             throw new IllegalArgumentException("Negatives not allowed");
         }
         return sumNumbers(numbers);
