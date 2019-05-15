@@ -32,4 +32,11 @@ public class stringCalculatorTest {
         int resultAdd = stringCalculator.add("1\n2,3");
         assertThat(resultAdd, Matchers.is(6));
     }
+
+    @Test
+    public void given_new_delimiter_then_return_the_sum() {
+        StringCalculator stringCalculator = new StringCalculator();
+        int resultAdd = stringCalculator.add("//;\n1;2");
+        assertThat(resultAdd, Matchers.is(3));
+    }
 }
