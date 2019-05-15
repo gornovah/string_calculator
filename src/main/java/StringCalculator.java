@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class StringCalculator {
 
@@ -18,15 +19,23 @@ public class StringCalculator {
         if (numbers.isEmpty()) {
             return 0;
         }
-        if (numbers.contains("-")){
-
-            throw new IllegalArgumentException("Negatives not allowed");
-        }
         return sumNumbers(numbers);
     }
 
     private int sum() {
-        return Arrays.stream(numbers.split(delimiter)).mapToInt(Integer::parseInt).sum();
+        existNegativesNumbers();
+        return getNumbers().sum();
+    }
+
+    private void existNegativesNumbers() {
+        if (getNumbers().anyMatch(n -> n < 0)) {
+            throw new IllegalArgumentException("negatives are not allowed");
+        }
+    }
+
+    private IntStream getNumbers() {
+        return Arrays.stream(numbers.split(delimiter))
+                .mapToInt(Integer::parseInt);
     }
 
     private int sumNumbers(String numbers) {
