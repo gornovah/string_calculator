@@ -1,5 +1,6 @@
 import java.util.Arrays;
-import java.util.stream.IntStream;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class StringCalculator {
 
@@ -24,18 +25,24 @@ public class StringCalculator {
 
     private int sum() {
         existNegativesNumbers();
-        return getNumbers().sum();
+        return obtainSumOfNumbers();
+    }
+
+    private int obtainSumOfNumbers() {
+        return getNumbers().stream().mapToInt(Integer::parseInt).sum();
     }
 
     private void existNegativesNumbers() {
-        if (getNumbers().anyMatch(n -> n < 0)) {
-            throw new IllegalArgumentException("negatives are not allowed");
+        String negativeNumbersCollect = getNumbers().stream()
+                .filter(n -> n.contains("-"))
+                .collect(Collectors.joining(","));
+        if (!negativeNumbersCollect.isEmpty()) {
+            throw new IllegalArgumentException("negatives are not allowed:" + negativeNumbersCollect);
         }
     }
 
-    private IntStream getNumbers() {
-        return Arrays.stream(numbers.split(delimiter))
-                .mapToInt(Integer::parseInt);
+    private List<String> getNumbers() {
+        return Arrays.asList(numbers.split(delimiter));
     }
 
     private int sumNumbers(String numbers) {

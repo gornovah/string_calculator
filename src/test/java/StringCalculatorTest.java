@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
-public class stringCalculatorTest {
+public class StringCalculatorTest {
     @Test
     public void simple_calculator() {
         StringCalculator stringCalculator = new StringCalculator();
@@ -42,9 +42,10 @@ public class stringCalculatorTest {
     }
 
     @Test
+
     public void given_negatives_numbers_then_return_an_exception() {
         StringCalculator stringCalculator = new StringCalculator();
-        IllegalArgumentException illegalArgumentException = Assertions.assertThrows(IllegalArgumentException.class, () -> stringCalculator.add("-2"));
-        Assertions.assertTrue(illegalArgumentException.getMessage().contains("negatives are not allowed"));
+        IllegalArgumentException illegalArgumentException = Assertions.assertThrows(IllegalArgumentException.class, () -> stringCalculator.add("1, -2, 3, -4"));
+        Assertions.assertTrue(illegalArgumentException.getMessage().contains("negatives are not allowed: -2, -4"));
     }
 }
