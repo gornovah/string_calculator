@@ -1,4 +1,5 @@
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -38,5 +39,11 @@ public class stringCalculatorTest {
         StringCalculator stringCalculator = new StringCalculator();
         int resultAdd = stringCalculator.add("//;\n1;2");
         assertThat(resultAdd, Matchers.is(3));
+    }
+
+    @Test
+    public void given_negatives_numbers_then_return_an_exception() {
+        StringCalculator stringCalculator = new StringCalculator();
+        Assertions.assertThrows(IllegalArgumentException.class, ()-> stringCalculator.add("1, -2, -3"));
     }
 }
