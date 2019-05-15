@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class StringCalculator {
 
@@ -17,19 +18,19 @@ public class StringCalculator {
     }
 
     public int add(String numbers) {
-        if (numbers.isEmpty()) {
-            return 0;
-        }
         return sumNumbers(numbers);
     }
 
     private int sum() {
+        if (numbers.isEmpty()){
+            return IntStream.empty().sum();
+        }
         existNegativesNumbers();
         return obtainSumOfNumbers();
     }
 
     private int obtainSumOfNumbers() {
-        return getNumbers().stream().mapToInt(Integer::parseInt).sum();
+        return getNumbers().stream().mapToInt(Integer::parseInt).filter(n -> n < 1000).sum();
     }
 
     private void existNegativesNumbers() {
@@ -49,12 +50,12 @@ public class StringCalculator {
         return parseInput(numbers).sum();
     }
 
-    private StringCalculator parseInput(String numbers) {
-        if (numbers.startsWith("//")) {
-            String[] parts = numbers.split("\n", 2);
+    private StringCalculator parseInput(String input) {
+        if (input.startsWith("//")) {
+            String[] parts = input.split("\n", 2);
             return new StringCalculator(parts[0].substring(2), parts[1]);
         } else {
-            return new StringCalculator(",|\n", numbers);
+            return new StringCalculator(",|\n", input);
         }
     }
 }

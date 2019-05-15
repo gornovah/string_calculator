@@ -42,10 +42,16 @@ public class StringCalculatorTest {
     }
 
     @Test
-
     public void given_negatives_numbers_then_return_an_exception() {
         StringCalculator stringCalculator = new StringCalculator();
         IllegalArgumentException illegalArgumentException = Assertions.assertThrows(IllegalArgumentException.class, () -> stringCalculator.add("1, -2, 3, -4"));
         Assertions.assertTrue(illegalArgumentException.getMessage().contains("negatives are not allowed: -2, -4"));
+    }
+    
+    @Test
+    public void given_number_major_1000_then_ignore_the_numbers() {
+        StringCalculator stringCalculator = new StringCalculator();
+        int resultAdd = stringCalculator.add("1000");
+        assertThat(resultAdd, Matchers.is(0));
     }
 }
