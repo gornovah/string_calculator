@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class StringCalculator {
 
@@ -38,7 +39,10 @@ public class StringCalculator {
     private String parseDelimiter(String header) {
         String delimiter = header.substring(2);
         if (delimiter.startsWith("[")){
-            delimiter = delimiter.substring(1, delimiter.length()-1);
+            delimiter = delimiter.substring(1, delimiter.length() -1);
+            return Stream.of(delimiter.split("]\\["))
+                    .map(Pattern::quote)
+                    .collect(Collectors.joining("|"));
         }
         return Pattern.quote(delimiter);
     }

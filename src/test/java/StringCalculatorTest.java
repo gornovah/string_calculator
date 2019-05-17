@@ -64,4 +64,11 @@ public class StringCalculatorTest {
         int resultAdd = stringCalculator.add("//[***]\n1***2***3");
         assertThat(resultAdd, is(6));
     }
+
+    @Test
+    public void given_multiple_single_length_separators_return_sum() {
+        StringCalculator stringCalculator = new StringCalculator();
+        int resultAdd = stringCalculator.add("//[*][%]\n1*2%3");
+        assertThat(resultAdd, is(6));
+    }
 }
