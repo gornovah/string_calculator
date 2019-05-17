@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -14,11 +15,28 @@ public class StringCalculator {
     }
 
     public StringCalculator() {
-
     }
 
     public int add(String numbers) {
         return sumNumbers(numbers);
+    }
+
+    private int sumNumbers(String numbers) {
+        return parseInput(numbers).sum();
+    }
+
+    private StringCalculator parseInput(String input) {
+        if (input.startsWith("//")) {
+            String[] parts = input.split("\n", 2);
+            String header = parts[0];
+            return new StringCalculator(parseDelimiter(header), parts[1]);
+        } else {
+            return new StringCalculator(",|\n", input);
+        }
+    }
+
+    private String parseDelimiter(String header) {
+        return Pattern.quote(header.substring(2));
     }
 
     private int sum() {
@@ -27,10 +45,6 @@ public class StringCalculator {
         }
         existNegativesNumbers();
         return obtainSumOfNumbers();
-    }
-
-    private int obtainSumOfNumbers() {
-        return getNumbers().stream().mapToInt(Integer::parseInt).filter(n -> n < 1000).sum();
     }
 
     private void existNegativesNumbers() {
@@ -46,16 +60,9 @@ public class StringCalculator {
         return Arrays.asList(numbers.split(delimiter));
     }
 
-    private int sumNumbers(String numbers) {
-        return parseInput(numbers).sum();
+    private int obtainSumOfNumbers() {
+        return getNumbers().stream().mapToInt(Integer::parseInt).filter(n -> n < 1000).sum();
     }
 
-    private StringCalculator parseInput(String input) {
-        if (input.startsWith("//")) {
-            String[] parts = input.split("\n", 2);
-            return new StringCalculator(parts[0].substring(2), parts[1]);
-        } else {
-            return new StringCalculator(",|\n", input);
-        }
-    }
+
 }

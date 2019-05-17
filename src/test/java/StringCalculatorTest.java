@@ -40,6 +40,8 @@ public class StringCalculatorTest {
         StringCalculator stringCalculator = new StringCalculator();
         int resultAdd = stringCalculator.add("//;\n1;2");
         assertThat(resultAdd, is(3));
+        resultAdd = stringCalculator.add("//.\n1.2.3");
+        assertThat(resultAdd, is(6));
     }
 
     @Test
