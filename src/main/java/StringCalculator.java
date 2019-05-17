@@ -36,7 +36,11 @@ public class StringCalculator {
     }
 
     private String parseDelimiter(String header) {
-        return Pattern.quote(header.substring(2));
+        String delimiter = header.substring(2);
+        if (delimiter.startsWith("[")){
+            delimiter = delimiter.substring(1, delimiter.length()-1);
+        }
+        return Pattern.quote(delimiter);
     }
 
     private int sum() {
